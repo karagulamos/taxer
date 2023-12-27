@@ -2,7 +2,7 @@
 
 ## Description
 
-A simple tax calculator in .NET capable of handling tax types.
+A simple tax calculator in .NET capable of handling various tax types.
 
 * Progressive tax
 * Flat rate tax
