@@ -7,6 +7,7 @@ using Taxer.Persistence.EntityFramework;
 using Taxer.Persistence.EntityFramework.Repositories;
 using Taxer.Services;
 using Taxer.Services.Handlers;
+using Taxer.Web.API.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -44,6 +45,9 @@ builder.Services.AddDbContext<TaxerContext>(async options =>
     await context.Database.EnsureCreatedAsync();
 });
 
+builder.Services.AddSingleton<ExecutionTrackerMiddleware>();
+builder.Services.AddSingleton<DefaultExceptionHandlerMiddleware>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -54,6 +58,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseMiddleware<ExecutionTrackerMiddleware>();
+app.UseMiddleware<DefaultExceptionHandlerMiddleware>();
+
 app.MapControllers();
 
 app.Run();
