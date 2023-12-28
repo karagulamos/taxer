@@ -11,6 +11,7 @@ using Taxer.Services.Handlers;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 // builder.Services.AddEndpointsApiExplorer();
@@ -23,13 +24,14 @@ builder.Services.AddTransient<ITaxTypeRepository, TaxTypeRepository>();
 builder.Services.AddTransient<ITaxService, TaxService>();
 builder.Services.AddTransient<ITaxCalculatorHandler>(x =>
 {
-    var flatValueHander = new FlatValueTaxCalculatorHandler();
-    var flatRateHandler = new FlatRateTaxCalculatorHandler();
+    var progressiveTaxHandler = new ProgressiveTaxCalculatorHandler();
+    var flatValueTaxHander = new FlatValueTaxCalculatorHandler();
+    var flatRateTaxHandler = new FlatRateTaxCalculatorHandler();
 
-    flatValueHander.SetNext(flatRateHandler);
-    flatRateHandler.SetNext(new ProgressiveTaxCalculatorHandler());
+    progressiveTaxHandler.SetNext(flatValueTaxHander);
+    flatValueTaxHander.SetNext(flatRateTaxHandler);
 
-    return flatValueHander;
+    return progressiveTaxHandler;
 });
 
 builder.Services.AddDbContext<TaxerContext>(async options =>
