@@ -13,10 +13,10 @@ public class TaxerContext(DbContextOptions options) : DbContext(options)
         modelBuilder.Entity<TaxType>().HasKey(x => new { x.PostalCode, x.CalculationType });
 
         modelBuilder.Entity<TaxType>().HasData(
-            new TaxType { PostalCode = "7441", CalculationType = TaxCalculationType.Progressive },
-            new TaxType { PostalCode = "A100", CalculationType = TaxCalculationType.FlatValue },
-            new TaxType { PostalCode = "7000", CalculationType = TaxCalculationType.FlatRate },
-            new TaxType { PostalCode = "1000", CalculationType = TaxCalculationType.Progressive }
+            new TaxType("7441", TaxCalculationType.Progressive),
+            new TaxType("A100", TaxCalculationType.FlatValue),
+            new TaxType("7000", TaxCalculationType.FlatRate),
+            new TaxType("1000", TaxCalculationType.Progressive)
         );
     }
 }

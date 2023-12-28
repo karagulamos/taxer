@@ -25,7 +25,7 @@ public class TaxServiceTests
     public void Setup()
     {
         _taxTypeRepository.Setup(x => x.GetByPostalCodeAsync(It.IsAny<string>()))
-                          .ReturnsAsync(new TaxType { CalculationType = TaxCalculationType.FlatRate });
+                          .ReturnsAsync(new TaxType(default!, TaxCalculationType.FlatRate));
 
         _taxCalculatorHandler.Setup(x => x.HandleAsync(It.IsAny<decimal>(), It.IsAny<TaxCalculationType>()))
                              .ReturnsAsync(It.IsAny<decimal>());
