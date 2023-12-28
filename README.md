@@ -10,8 +10,8 @@ A simple tax calculator in .NET capable of handling various tax types.
 
 The project is divided into two parts:
 
-- A Web API backend
-- A Javascript UI frontend
+* A Web API backend
+* A Javascript UI frontend
 
 ## Setup
 
