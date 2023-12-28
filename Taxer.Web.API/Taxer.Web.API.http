@@ -5,7 +5,7 @@ Content-Type: application/json
 
 {
     "income": 1000000,
-    "postalCode": "7000"
+    "postalCode": "1000"
 }
 
 ###
