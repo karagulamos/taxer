@@ -1,6 +1,6 @@
-@Taxer.Web.API_HostAddress = http://localhost:5035
+@Taxer_Web_API_HostAddress = http://localhost:5035
 
-POST {{Taxer.Web.API_HostAddress}}/api/v1/tax/calculate
+POST {{Taxer_Web_API_HostAddress}}/api/v1/tax/calculate
 Content-Type: application/json
 
 {
