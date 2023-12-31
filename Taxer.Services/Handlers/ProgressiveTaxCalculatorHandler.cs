@@ -18,13 +18,17 @@ public class ProgressiveTaxCalculatorHandler : TaxCalculatorHandler
 
         foreach (var bracket in TaxBrackets)
         {
+            // If the income is less than or equal to zero, we're done.
             if (income <= 0)
                 break;
 
+            // For the current bracket, calculate the taxable amount.
             var taxableAmount = Math.Min(income, bracket.Max);
 
+            // Compute the tax for the current bracket and add it to the total tax.
             tax += taxableAmount * bracket.Rate;
 
+            // Subtract the taxable amount from the income.
             income -= taxableAmount;
         }
 

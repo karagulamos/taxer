@@ -22,6 +22,7 @@ builder.Services.AddSwaggerGen(s =>
 });
 
 builder.Services.AddTransient<ITaxTypeRepository, TaxTypeRepository>();
+builder.Services.AddTransient<ITaxRequestLogRepository, TaxRequestLogRepository>();
 builder.Services.AddTransient<ITaxService, TaxService>();
 builder.Services.AddTransient<ITaxCalculatorHandler>(x =>
 {

@@ -7,7 +7,9 @@ using Taxer.Core.Services.Handlers;
 
 namespace Taxer.Services;
 
-public class TaxService(ITaxTypeRepository taxTypeRepository, ITaxCalculatorHandler taxCalculatorHandler) : ITaxService
+public class TaxService(
+    ITaxTypeRepository taxTypeRepository, ITaxRequestLogRepository taxRequestLogRepository,
+    ITaxCalculatorHandler taxCalculatorHandler) : ITaxService
 {
     public async Task<Result<CalculateTaxResult>> CalculateTaxAsync(CalculateTaxRequest request)
     {
@@ -24,11 +26,16 @@ public class TaxService(ITaxTypeRepository taxTypeRepository, ITaxCalculatorHand
 
         var taxAmount = await taxCalculatorHandler.HandleAsync(request.Income, taxType.CalculationType);
 
+        var taxRequestLog = request.ToEntity(taxAmount, taxType.CalculationType);
+
+        await taxRequestLogRepository.AddAsync(taxRequestLog);
+
         return new CalculateTaxResult
         {
-            TaxAmount = taxAmount,
-            NetIncome = request.Income - taxAmount
+            TaxType = taxRequestLog.TaxType.ToString(),
+            TaxAmount = taxRequestLog.CalculatedTax,
+            NetIncome = taxRequestLog.NetIncome,
+            AnnualIncome = taxRequestLog.AnnualIncome
         };
     }
 }
-
