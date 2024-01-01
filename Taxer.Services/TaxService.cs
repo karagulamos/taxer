@@ -35,7 +35,7 @@ public class TaxService(
             TaxType = taxRequestLog.TaxType.ToString(),
             TaxAmount = taxRequestLog.CalculatedTax,
             NetIncome = taxRequestLog.NetIncome,
-            AnnualIncome = taxRequestLog.AnnualIncome
+            GrossIncome = taxRequestLog.AnnualIncome
         };
     }
 }
