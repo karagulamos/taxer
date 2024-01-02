@@ -15,7 +15,6 @@
             {
                 @Html.AntiForgeryToken()
 
-                <!-- Validation Summary -->
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                 <div class="form-group">
@@ -60,75 +59,5 @@
 </div>
 
 @section Styles {
-    <style>
-        #tax-calculator {
-            margin-top: 50px;
-        }
-
-        #tax-calculator .form-group,
-        #tax-result * {
-            margin-top: 10px;
-            margin-bottom: 20px;
-        }
-
-        #tax-calculator .form-group label {
-            font-weight: bold;
-        }
-
-        #tax-calculator form,
-        #tax-result {
-            border: 1px solid #8ec640;
-            padding: 20px;
-        }
-
-        #tax-calculator form .text-danger {
-            margin-top: 5px;
-            font-weight: 600;
-        }
-
-        #tax-calculator form li {
-            list-style-type: disclosure-closed;
-        }
-
-        #tax-calculator form,
-        #tax-calculator form input[type="text"],
-        #tax-result {
-            background-color: #f5f5f5;
-        }
-
-        #tax-calculator form input[type="text"],
-        #tax-calculator form button[type="submit"] {
-            border: 1px solid #8ec640;
-        }
-
-        #tax-calculator form button[type="submit"] {
-            background-color: #8ec640;
-        }
-
-        #tax-calculator form input[type="text"]:active,
-        #tax-calculator form input[type="text"]:focus,
-        #tax-calculator form button[type="submit"]:active,
-        #tax-calculator form button[type="submit"]:focus {
-            border: 1px solid #8ec640;
-            box-shadow: #8ec640 0px 0px 5px;
-        }
-
-        .bordered-element {
-            padding: 10px;
-            position: relative;
-        }
-
-        .bordered-element[data-title]:before {
-            content: attr(data-title);
-            position: absolute;
-            font-size: 25px;
-            font-weight: bold;
-            top: -25px;
-            left: 15%;
-            transform: translateX(-50%);
-            background-color: white;
-            color: #8fc640;
-            padding: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="~/css/tax-calculator.css" asp-append-version="true" />
 }
