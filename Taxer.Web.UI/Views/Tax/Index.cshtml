@@ -1,0 +1,134 @@
+﻿@model Taxer.Web.UI.Models.TaxViewModel
+
+@{
+    ViewBag.Title = "Tax Calculator";
+}
+
+<div class="container" id="tax-calculator">
+    <div class="row">
+        <div class="col-md-6">
+            @using (Html.BeginForm("Index", "Tax", FormMethod.Post, new
+            {
+                @class = "bordered-element",
+                @data_title = "Calculator"
+            }))
+            {
+                @Html.AntiForgeryToken()
+
+                <!-- Validation Summary -->
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.GrossIncome)
+                    @Html.TextBoxFor(m => m.GrossIncome, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.GrossIncome, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.PostalCode)
+                    @Html.TextBoxFor(m => m.PostalCode, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.PostalCode, "", new { @class = "text-danger" })
+                </div>
+
+                <button type="submit" class="btn btn-primary">Calculate</button>
+            }
+        </div>
+
+        <div class="col-md-6">
+            @if (Model?.HasResult ?? false)
+            {
+                <div class="bordered-element" data-title="Result" id="tax-result">
+                    <p>
+                        <strong>Your Net Income:</strong>
+                        <br>
+                        @Model.NetIncome.ToString("C")
+                    </p>
+                    <p>
+                        <strong>Your Tax:</strong>
+                        <br>
+                        @Model.Tax.ToString("C")
+                    </p>
+
+                    <p>
+                        <strong>Your Tax Type:</strong>
+                        <br>
+                        @Model.TaxType
+                    </p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        #tax-calculator {
+            margin-top: 50px;
+        }
+
+        #tax-calculator .form-group,
+        #tax-result * {
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        #tax-calculator .form-group label {
+            font-weight: bold;
+        }
+
+        #tax-calculator form,
+        #tax-result {
+            border: 1px solid #8ec640;
+            padding: 20px;
+        }
+
+        #tax-calculator form .text-danger {
+            margin-top: 5px;
+            font-weight: 600;
+        }
+
+        #tax-calculator form li {
+            list-style-type: disclosure-closed;
+        }
+
+        #tax-calculator form,
+        #tax-calculator form input[type="text"],
+        #tax-result {
+            background-color: #f5f5f5;
+        }
+
+        #tax-calculator form input[type="text"],
+        #tax-calculator form button[type="submit"] {
+            border: 1px solid #8ec640;
+        }
+
+        #tax-calculator form button[type="submit"] {
+            background-color: #8ec640;
+        }
+
+        #tax-calculator form input[type="text"]:active,
+        #tax-calculator form input[type="text"]:focus,
+        #tax-calculator form button[type="submit"]:active,
+        #tax-calculator form button[type="submit"]:focus {
+            border: 1px solid #8ec640;
+            box-shadow: #8ec640 0px 0px 5px;
+        }
+
+        .bordered-element {
+            padding: 10px;
+            position: relative;
+        }
+
+        .bordered-element[data-title]:before {
+            content: attr(data-title);
+            position: absolute;
+            font-size: 25px;
+            font-weight: bold;
+            top: -25px;
+            left: 15%;
+            transform: translateX(-50%);
+            background-color: white;
+            color: #8fc640;
+            padding: 5px;
+        }
+    </style>
+}
