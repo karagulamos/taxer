@@ -23,7 +23,7 @@ Requires .NET 8 or higher.
 dotnet restore
 ```
 
-* Run the Web API project (<http://localhost:5035>)
+* Run the Web API project (<http://localhost:5035/swagger>)
 
 ```bash
 dotnet watch run --project Taxer.Web.API 
