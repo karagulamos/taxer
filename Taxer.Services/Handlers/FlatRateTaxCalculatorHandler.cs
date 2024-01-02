@@ -1,9 +1,9 @@
 ﻿using Taxer.Core;
-using Taxer.Core.Services.Handlers;
+using Taxer.Core.Services;
 
 namespace Taxer.Services.Handlers;
 
-public class FlatRateTaxCalculatorHandler : TaxCalculatorHandler
+public class FlatRateTaxCalculatorHandler : BaseTaxCalculatorHandler, ITaxCalculatorHandler
 {
     // Ideally, this would be stored in a database or configuration file and retrieved at runtime.
     private const decimal TaxRate = 0.175m;

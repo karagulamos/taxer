@@ -1,6 +1,9 @@
-namespace Taxer.Core.Services.Handlers;
+using Taxer.Core;
+using Taxer.Core.Services;
 
-public abstract class TaxCalculatorHandler : ITaxCalculatorHandler
+namespace Taxer.Services.Handlers;
+
+public abstract class BaseTaxCalculatorHandler
 {
     private ITaxCalculatorHandler? _next;
 

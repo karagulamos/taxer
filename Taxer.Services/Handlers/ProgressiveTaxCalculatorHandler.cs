@@ -1,9 +1,9 @@
 using Taxer.Core;
-using Taxer.Core.Services.Handlers;
+using Taxer.Core.Services;
 
 namespace Taxer.Services.Handlers;
 
-public class ProgressiveTaxCalculatorHandler : TaxCalculatorHandler
+public class ProgressiveTaxCalculatorHandler : BaseTaxCalculatorHandler, ITaxCalculatorHandler
 {
     // Ideally, this would be stored in a database or configuration file and retrieved at runtime.
     private static readonly (decimal Rate, decimal Max)[] TaxBrackets =

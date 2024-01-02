@@ -1,4 +1,4 @@
-namespace Taxer.Core.Services.Handlers;
+namespace Taxer.Core.Services;
 
 public interface ITaxCalculatorHandler
 {
