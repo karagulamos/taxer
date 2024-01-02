@@ -1,6 +1,6 @@
 # Taxer - PaySpace
 
-![Taxer Demo](https://github.com/karagulamos/taxer/assets/16248072/5b603b44-95c2-4ad0-b60f-60ab2b878beb)
+![Taxer Demo](https://github.com/karagulamos/taxer/assets/16248072/b83abd9e-6bbd-494e-bbcb-c0537927d9ed)
 
 ## Description
 
