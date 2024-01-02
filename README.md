@@ -12,8 +12,8 @@ A simple tax calculator in .NET that implements the following tax types:
 
 The project is divided into two parts:
 
-* A Web API Back-end
-* An MVC Razor Front-end
+* A Web API back-end
+* An MVC Razor front-end
 
 ## Setup
 
