@@ -1,5 +1,7 @@
 # Taxer - PaySpace
 
+![Taxer Demo](https://github.com/karagulamos/taxer/assets/16248072/5b603b44-95c2-4ad0-b60f-60ab2b878beb)
+
 ## Description
 
 A simple tax calculator in .NET that implements the following tax types:
