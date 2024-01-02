@@ -2,7 +2,7 @@
 
 ## Description
 
-A simple tax calculator in .NET capable of handling various tax types.
+A simple tax calculator in .NET that implements the following tax types:
 
 * Progressive tax
 * Flat rate tax
@@ -10,16 +10,28 @@ A simple tax calculator in .NET capable of handling various tax types.
 
 The project is divided into two parts:
 
-* A Web API backend
-* A Javascript UI frontend
+* A Web API Back-end
+* An MVC Razor Front-end
 
 ## Setup
 
 Requires .NET 8 or higher.
 
+* Restore the packages
+
 ```bash
 dotnet restore
-dotnet watch run --project Taxer.Web.API &
+```
+
+* Run the Web API project (<http://localhost:5035>)
+
+```bash
+dotnet watch run --project Taxer.Web.API 
+```
+
+* Run the Web UI project (<http://localhost:5078>)
+
+```bash
 dotnet watch run --project Taxer.Web.UI 
 ```
 
