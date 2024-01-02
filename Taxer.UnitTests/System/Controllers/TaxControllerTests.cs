@@ -33,7 +33,7 @@ public class TaxControllerTests
         var controller = new TaxController(_taxServiceMock.Object);
 
         // Act
-        var result = await controller.CalculateTaxAsync(new CalculateTaxRequest { Income = 1000, PostalCode = "7441" });
+        var result = await controller.CalculateTaxAsync(new CalculateTaxRequest { GrossIncome= 1000, PostalCode = "7441" });
         
         // Assert
         Assert.Multiple(() =>
@@ -82,7 +82,7 @@ public class TaxControllerTests
     private static IEnumerable<object> InvalidServiceRequestScenarios()
     {
         yield return new TestCaseData(new CalculateTaxRequest { PostalCode = "7441" }, ServiceErrors.Tax.InvalidIncome);
-        yield return new TestCaseData(new CalculateTaxRequest { Income = 1000 }, ServiceErrors.Tax.InvalidPostalCode);
-        yield return new TestCaseData(new CalculateTaxRequest { Income = 1000, PostalCode = "0000" }, ServiceErrors.Tax.UnsupportedPostalCode);
+        yield return new TestCaseData(new CalculateTaxRequest { GrossIncome= 1000 }, ServiceErrors.Tax.InvalidPostalCode);
+        yield return new TestCaseData(new CalculateTaxRequest { GrossIncome= 1000, PostalCode = "0000" }, ServiceErrors.Tax.UnsupportedPostalCode);
     }
 }

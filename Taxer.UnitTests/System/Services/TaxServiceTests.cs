@@ -42,7 +42,7 @@ public class TaxServiceTests
         var service = new TaxService(_taxTypeRepository.Object, _taxRequestLogRepository.Object, _taxCalculatorHandler.Object);
 
         // Act
-        var result = await service.CalculateTaxAsync(new CalculateTaxRequest { Income = 1000, PostalCode = "7441" });
+        var result = await service.CalculateTaxAsync(new CalculateTaxRequest { GrossIncome = 1000, PostalCode = "7441" });
 
         // Assert
         Assert.That(result.IsSuccess, Is.True);
@@ -76,7 +76,7 @@ public class TaxServiceTests
         var service = new TaxService(_taxTypeRepository.Object, _taxRequestLogRepository.Object, _taxCalculatorHandler.Object);
 
         // Act
-        var result = await service.CalculateTaxAsync(new CalculateTaxRequest { Income = 1000, PostalCode = "0000" });
+        var result = await service.CalculateTaxAsync(new CalculateTaxRequest { GrossIncome = 1000, PostalCode = "0000" });
 
         // Assert
         Assert.Multiple(() =>
@@ -95,7 +95,7 @@ public class TaxServiceTests
         var service = new TaxService(_taxTypeRepository.Object, _taxRequestLogRepository.Object, _taxCalculatorHandler.Object);
 
         // Act
-        var result = await service.CalculateTaxAsync(new CalculateTaxRequest { Income = 1000, PostalCode = "7441" });
+        var result = await service.CalculateTaxAsync(new CalculateTaxRequest { GrossIncome = 1000, PostalCode = "7441" });
 
         // Assert
         _taxCalculatorHandler.Verify(x => x.HandleAsync(It.IsAny<decimal>(), It.IsAny<TaxCalculationType>()), Times.Once);
@@ -108,7 +108,7 @@ public class TaxServiceTests
         var service = new TaxService(_taxTypeRepository.Object, _taxRequestLogRepository.Object, _taxCalculatorHandler.Object);
 
         // Act
-        var result = await service.CalculateTaxAsync(new CalculateTaxRequest { Income = 1000, PostalCode = "7441" });
+        var result = await service.CalculateTaxAsync(new CalculateTaxRequest { GrossIncome = 1000, PostalCode = "7441" });
 
         // Assert
         _taxRequestLogRepository.Verify(x => x.AddAsync(It.IsAny<TaxRequestLog>()), Times.Once);
@@ -117,7 +117,7 @@ public class TaxServiceTests
     private static IEnumerable<object> InvalidServiceRequestScenarios()
     {
         yield return new object[] { new CalculateTaxRequest { PostalCode = "7441" }, ServiceErrors.Tax.InvalidIncome };
-        yield return new object[] { new CalculateTaxRequest { Income = 1000 }, ServiceErrors.Tax.InvalidPostalCode };
+        yield return new object[] { new CalculateTaxRequest { GrossIncome = 1000 }, ServiceErrors.Tax.InvalidPostalCode };
     }
 
     [TearDown]

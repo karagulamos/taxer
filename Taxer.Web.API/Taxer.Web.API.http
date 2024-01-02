@@ -4,7 +4,7 @@ POST {{Taxer_Web_API_HostAddress}}/api/v1/tax/calculate
 Content-Type: application/json
 
 {
-    "income": 1000000,
+    "grossIncome": 1000000,
     "postalCode": "1000"
 }
 

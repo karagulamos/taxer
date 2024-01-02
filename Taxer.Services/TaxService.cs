@@ -13,7 +13,7 @@ public class TaxService(
 {
     public async Task<Result<CalculateTaxResult>> CalculateTaxAsync(CalculateTaxRequest request)
     {
-        if (request.Income <= 0)
+        if (request.GrossIncome <= 0)
             return ServiceErrors.Tax.InvalidIncome;
 
         if (string.IsNullOrEmpty(request.PostalCode))
@@ -24,7 +24,7 @@ public class TaxService(
         if (taxType is null)
             return ServiceErrors.Tax.UnsupportedPostalCode;
 
-        var taxAmount = await taxCalculatorHandler.HandleAsync(request.Income, taxType.CalculationType);
+        var taxAmount = await taxCalculatorHandler.HandleAsync(request.GrossIncome, taxType.CalculationType);
 
         var taxRequestLog = request.ToEntity(taxAmount, taxType.CalculationType);
 

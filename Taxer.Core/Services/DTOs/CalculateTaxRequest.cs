@@ -5,11 +5,13 @@ namespace Taxer.Core.Services.DTOs;
 
 public class CalculateTaxRequest
 {
-    [Required(ErrorMessage = "Income is required.")]
-    public decimal Income { get; set; }
+    [Display(Name = "Gross Income")]
+    [Required(ErrorMessage = "{0} is required.")]
+    public decimal GrossIncome { get; set; }
 
-    [Required(ErrorMessage = "Postal code is required.")]
+    [Display(Name = "Postal Code")]
+    [Required(ErrorMessage = "{0} is required.")]
     public string PostalCode { get; set; } = string.Empty;
 
-    public TaxRequestLog ToEntity(decimal tax, TaxCalculationType taxType) => new(PostalCode, taxType, Income, tax, DateTime.UtcNow);
+    public TaxRequestLog ToEntity(decimal tax, TaxCalculationType taxType) => new(PostalCode, taxType, GrossIncome, tax, DateTime.UtcNow);
 }
