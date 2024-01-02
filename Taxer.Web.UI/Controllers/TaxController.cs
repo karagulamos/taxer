@@ -5,7 +5,7 @@ using Taxer.Web.UI.Models;
 
 namespace Taxer.Web.UI;
 
-[Route("taxes")]
+[Route("tax")]
 public class TaxController(ITaxApiClient client, ILogger<TaxController> logger) : Controller
 {
     private const string ErrorCalculatingTax = "An error occurred while calculating tax";
@@ -26,7 +26,7 @@ public class TaxController(ITaxApiClient client, ILogger<TaxController> logger) 
             if (!ModelState.IsValid)
                 return View(model);
 
-            var result = await client.CalculateTax(model);
+            var result = await client.CalculateTaxAsync(model);
 
             ModelState.AddModelErrors(result.Errors);
 

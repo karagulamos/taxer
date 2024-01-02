@@ -8,7 +8,7 @@ namespace Taxer.Web.UI.Clients;
 
 public class TaxApiClient(HttpClient httpClient, IOptionsMonitor<TaxApiConfig> config) : ITaxApiClient
 {
-    public async Task<CalculateTaxResponseDto> CalculateTax(CalculateTaxRequestDto request, CancellationToken cancellationToken)
+    public async Task<CalculateTaxResponseDto> CalculateTaxAsync(CalculateTaxRequestDto request, CancellationToken cancellationToken)
     {
         var response = await httpClient.PostAsJsonAsync(config.CurrentValue.CalculateTaxEndpoint, request, cancellationToken);
 
