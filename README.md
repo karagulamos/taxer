@@ -41,8 +41,9 @@ dotnet watch run --project Taxer.Web.UI
 
 | Command                       | Description                     |
 | :---------------------------- | :------------------------------ |
-| `dotnet build`                | To build the solution           |
-| `dotnet watch run`            | To run the solution in dev      |
+| `dotnet restore`              | To restore nuget packages       |
+| `dotnet watch run`            | To run the solution in dev mode |
+| `dotnet test`                 | To run the unit tests           |
 
 ## Packages
 
