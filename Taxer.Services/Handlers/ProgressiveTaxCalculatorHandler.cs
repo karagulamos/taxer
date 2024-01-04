@@ -14,7 +14,7 @@ public class ProgressiveTaxCalculatorHandler : BaseTaxCalculatorHandler, ITaxCal
 
     protected override Task<decimal> CalculateTaxAsync(decimal income, TaxCalculationType calculationType)
     {
-        var tax = 0m;
+        var totalTax = 0m;
 
         foreach (var bracket in TaxBrackets)
         {
@@ -26,13 +26,13 @@ public class ProgressiveTaxCalculatorHandler : BaseTaxCalculatorHandler, ITaxCal
             var taxableAmount = Math.Min(income, bracket.Max);
 
             // Compute the tax for the current bracket and add it to the total tax.
-            tax += taxableAmount * bracket.Rate;
+            totalTax += taxableAmount * bracket.Rate;
 
             // Subtract the taxable amount from the income.
             income -= taxableAmount;
         }
 
-        return Task.FromResult(tax);
+        return Task.FromResult(totalTax);
     }
 
     protected override bool CanHandle(TaxCalculationType calculationType) => calculationType == TaxCalculationType.Progressive;
