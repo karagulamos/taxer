@@ -1,4 +1,4 @@
-# Taxer - PaySpace
+# Taxer
 
 ![Taxer Demo](https://github.com/karagulamos/taxer/assets/16248072/b83abd9e-6bbd-494e-bbcb-c0537927d9ed)
 
