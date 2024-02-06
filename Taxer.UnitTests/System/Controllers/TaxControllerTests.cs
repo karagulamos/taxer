@@ -1,6 +1,4 @@
-﻿
-
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Taxer.Core.Common;
 using Taxer.Core.Errors;
@@ -12,12 +10,9 @@ namespace Taxer.UnitTests.System.Controllers;
 
 public class TaxControllerTests
 {
-    private readonly Mock<ITaxService> _taxServiceMock = new();
+    private readonly Mock<ITaxService> _taxServiceMock;
 
-    public TaxControllerTests()
-    {
-        _taxServiceMock = new Mock<ITaxService>();
-    }
+    public TaxControllerTests() => _taxServiceMock = new();
 
     [SetUp]
     public void Setup()
@@ -33,8 +28,8 @@ public class TaxControllerTests
         var controller = new TaxController(_taxServiceMock.Object);
 
         // Act
-        var result = await controller.CalculateTaxAsync(new CalculateTaxRequest { GrossIncome= 1000, PostalCode = "7441" });
-        
+        var result = await controller.CalculateTaxAsync(new CalculateTaxRequest { GrossIncome = 1000, PostalCode = "7441" });
+
         // Assert
         Assert.Multiple(() =>
         {
@@ -82,7 +77,7 @@ public class TaxControllerTests
     private static IEnumerable<object> InvalidServiceRequestScenarios()
     {
         yield return new TestCaseData(new CalculateTaxRequest { PostalCode = "7441" }, ServiceErrors.Tax.InvalidIncome);
-        yield return new TestCaseData(new CalculateTaxRequest { GrossIncome= 1000 }, ServiceErrors.Tax.InvalidPostalCode);
-        yield return new TestCaseData(new CalculateTaxRequest { GrossIncome= 1000, PostalCode = "0000" }, ServiceErrors.Tax.UnsupportedPostalCode);
+        yield return new TestCaseData(new CalculateTaxRequest { GrossIncome = 1000 }, ServiceErrors.Tax.InvalidPostalCode);
+        yield return new TestCaseData(new CalculateTaxRequest { GrossIncome = 1000, PostalCode = "0000" }, ServiceErrors.Tax.UnsupportedPostalCode);
     }
 }

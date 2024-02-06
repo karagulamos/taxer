@@ -18,9 +18,9 @@ public class TaxServiceTests
 
     public TaxServiceTests()
     {
-        _taxTypeRepository = new Mock<ITaxTypeRepository>();
-        _taxRequestLogRepository = new Mock<ITaxRequestLogRepository>();
-        _taxCalculatorHandler = new Mock<ITaxCalculatorHandler>();
+        _taxTypeRepository = new();
+        _taxRequestLogRepository = new();
+        _taxCalculatorHandler = new();
     }
 
     [SetUp]
